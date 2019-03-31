@@ -1,0 +1,6 @@
+square_func.o: square_func.c
+	gcc -c square_func.c
+square_main.o: square_main.c
+	gcc -c square_main.c
+square: square_func.o square_main.o
+	gcc square_func.o square_main.o -o square
