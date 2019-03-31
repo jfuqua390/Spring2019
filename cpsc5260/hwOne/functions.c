@@ -4,31 +4,21 @@
 #include <time.h>
 #include "functions.h"
 
-void random_array(double* array, int size, double scale) {
+void randomize_array(double* array, int size, double scale) {
   srand(time(0));
   //generate array
-  for(int i=0; i<size; i++) {
+  int i=0;
+  for(i=0; i<size; i++) {
     double r = rand() % 9999;
     r *= .0001;
     array[i] = r * scale;
   }
 }
 
-void sort_array(double* array, int size) {
-  for(int i=0;i<size; i++) {
-    for(int j=i+1; j < size; j++) {
-      if(array[i] > array[j]) {
-        double n = array[i];
-        array[i] = array[j];
-        array[j] = n;
-      }
-    }
-  }
-}
-
 double sum(double* array, int size) {
-  double total;
-  for(int i=0; i < size; i++) {
+  double total = 0;
+  int i = 0;
+  for(i=0; i < size; i++) {
     total += array[i];
   }
   return total;
@@ -36,20 +26,39 @@ double sum(double* array, int size) {
 
 double stdev(double* array, int size) {
   double mean = sum(array, size)/size;
-  double diffs[size];
+  double *differences_array;
+  differences_array = malloc(sizeof(double) * size);
 
-  for(int i=0; i<size; i++) {
+  int i = 0;
+  for(i=0; i<size; i++) {
     double diff = array[i] - mean;
-    diffs[i] = diff*diff;
+    differences_array[i] = diff*diff;
   }
-  double variance = sum(diffs,size)/size;
+  double variance = sum(differences_array, size) / size;
   return sqrt(variance);
 }
 
 void smooth(double* array, int size, double w) {
-  for(int i=1; i<size-1; i++) {
-    double newVal = array[i]*w + ((array[i-1] + array[i+1])*(1-w)/2);
-    printf("OldVal=%f, NewVal=%f\n", array[i], newVal);
-    array[i] = newVal;
+  double *smooth_array;
+  smooth_array = malloc(sizeof(double) * size);
+
+  int i = 0;
+  for(i=1; i < size - 1; i++) {
+    double newVal = array[i] * w + ((array[i-1] + array[i+1]) / 2) * (1 - w);
+    smooth_array[i] = newVal;
   }
+
+  for(i=1; i < size-1; i++) {
+    array[i] = smooth_array[i];
+  }
+}
+
+void print_array(double* array, int size) {
+	int i = 0;
+
+	for(i = 0; i < size; i++) {
+		printf("Val: %0.2f\n", array[i]);
+	}
+
+	printf("\n");
 }

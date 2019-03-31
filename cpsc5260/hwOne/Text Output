@@ -1,0 +1,8 @@
+~/School/Spring2019/cpsc5260/hwOne(develop)$ gcc -Wall -o driver driver.c functions.c -lm
+~/School/Spring2019/cpsc5260/hwOne(develop)$ ls
+driver  driver.c  functions.c  functions.h
+~/School/Spring2019/cpsc5260/hwOne(develop)$ ./driver
+value of sum : 51.757000 
+value of stddev : 2.510969 
+value of stddev2 : 1.350864 
+value of stddev_3 : 0.917316 
