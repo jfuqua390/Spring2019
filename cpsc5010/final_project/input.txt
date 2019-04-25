@@ -1,0 +1,5 @@
+Harry Potter;JK Rowling;787;2000;3;3;30;75;
+Lord of Rings;JRR Tolkein;912;1996;4;4;45;65;
+The Great Gatsby;F Scott Fitzgerald;565;1933;5;4;20;35;
+1984;George Orwell;916;1966;8;12;15;45;
+Scarlet Rose;Jon Jones;1002;1985;4;2;30;105;
